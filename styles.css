@@ -6,15 +6,18 @@
 }
 #cont {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    /*justify-content: center;
+    align-items: center;*/
+    height: 200px;
     font-weight: 600;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
 }
 #topC {
-    height: 200px;
+    height: 150px;
     background-color: rgb(173, 154, 130);
-    flex: 1;
+    /*flex: 1;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,4 +88,14 @@ input[type="text"], input[type="number"] {
     width: 100%;
     font-weight: 600;
     font-size: 15px;
+}
+#shelf {
+    overflow: auto;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) ;
+}
+.shelfCard {
+    background: rgb(191, 162, 162);
+    width: 200px;
 }
