@@ -1,17 +1,16 @@
 //example books
-const book1 = new Book('To Kill A Mockingbird', 'Harper Lee', 488, true)
-const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 701, false)
+const book1 = new Book('To Kill A Mockingbird', 'Harper Lee', 488, 'on')
+const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 701, 'off')
 
 const shelf = document.getElementById('shelf')
 const btn = document.querySelector('#addBookBtn');
 const closeBtn = document.querySelector("#closeBtn");
 const form = document.getElementById('form')
 
-let myLibrary =[book1, book2];//the library array
-// let title;
-// let author;
-// let pages;
-// let read;
+let myLibrary = [book1, book2]; //the library array
+let newBook = []; //library to compare existing books
+let removeButtonsIndex = []; //index of each new remove button created
+let readButtonsIndex = []; //index of each new read button created
 
 //book constructor
 function Book(title, author, pages, read) {
@@ -35,31 +34,88 @@ closeBtn.addEventListener('click', () => {
     document.querySelector('#popUp').classList.add('inactive');
 })
 
-//create cards with book info taken from the library array
+//create divs with book info taken from the library array
 function display() {
-    myLibrary.forEach(book => {
-        console.log(book.title)
-        let bookCard = document.createElement('div');
-        bookCard.classList.add('shelfCard');
-        shelf.appendChild(bookCard);
-    
-        bookCard.appendChild(document.createElement('div')).textContent = book.title;
-        bookCard.appendChild(document.createElement('div')).textContent = book.author;
-        bookCard.appendChild(document.createElement('div')).textContent = book.pages;
-        bookCard.appendChild(document.createElement('button')).textContent = 'Read';
-        bookCard.appendChild(document.createElement('button')).textContent = 'Remove';
+    myLibrary.forEach((book, index) => {
+        //console.log(book)
+        if (!newBook.includes(book)) {
+            let bookCard = document.createElement('div');
+            bookCard.classList.add('shelfCard');
+            shelf.appendChild(bookCard);
+            
+            bookCard.appendChild(document.createElement('div')).textContent = book.title;
+            bookCard.appendChild(document.createElement('div')).textContent = book.author;
+            bookCard.appendChild(document.createElement('div')).textContent = book.pages;
+
+            //add a button with class and text in 1 line
+            // bookCard.appendChild(readButton = document.createElement('button'))
+            // .textContent = 'Read', readButton.classList.add('readBtn')
+            let readButton = document.createElement('button');
+            readButton.classList.add('readBtn');
+            if (book.read === 'on') {
+                readButton.textContent = 'Read';
+            } else {
+                readButton.textContent = 'Not read'
+            }
+            bookCard.appendChild(readButton);
+            readButtonsIndex.push(readButton);
+
+
+            //same in 4 lines
+            let removeBtn = document.createElement('button');
+            removeBtn.classList.add('removeBtn');
+            removeBtn.textContent = 'Remove'
+            bookCard.appendChild(removeBtn);    
+            removeButtonsIndex.push(removeBtn);// Store the button reference
+
+            newBook.push(book);
+            removeBooks();
+            console.log(book);
+        }
     })
 }
 display();
 
-//access form inputs
+
+function removeBooks() {
+    removeButtonsIndex.forEach((removeBtn, index)=> {
+        removeBtn.addEventListener('click',(event)=> {
+            console.log(index);
+            let cardRemove = event.target.parentElement;
+            myLibrary.splice(index, 1);
+            removeButtonsIndex.splice(index, 1);
+            cardRemove.remove();
+            console.log(removeButtonsIndex)
+            display();
+        })
+    })
+}
+//Toggle read
+function readStatus(){
+    readButtonsIndex.forEach((readButton, index)=> {
+        readButton.addEventListener('click',(event)=> {
+            console.log(event.target)
+            toggle = event.target;
+            if (toggle.textContent === 'Read') {
+                toggle.textContent = 'Not read';
+            } else {
+                toggle.textContent = 'Read';
+            }
+        })
+    })
+    
+}
+readStatus()
+
+//access the form inputs
 form.addEventListener('submit', function(event) {
     event.preventDefault();
     let title = document.getElementById('title').value;
-    console.log(title);
+    //console.log(title);
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
     let read = document.getElementById('read').value;
     myLibrary.push(new Book(title, author, pages, read));
     display();
+    console.log(read);
 })
