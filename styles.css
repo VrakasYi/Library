@@ -1,8 +1,12 @@
+@font-face {
+    font-family: Poppins;
+    src: url('./poppins/Poppins-Regular.ttf');
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: Poppins;
 }
 #cont {
     display: flex;
@@ -15,8 +19,9 @@
     height: 100vh;
 }
 #topC {
-    height: 150px;
-    background-color: rgb(173, 154, 130);
+    padding-top: 20px;
+    height: 180px;
+    background-color: rgba(235, 235, 235, 0.944);
     /*flex: 1;*/
     display: flex;
     flex-direction: column;
@@ -26,18 +31,28 @@
     position: absolute; 
     top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     background-color: white;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.149);
     border-radius: 12px;
     width: 280px;
     padding: 20px 30px;
+
+    transition: opacity 0.2s ease-in-out,
+                visibility 0.3s ease-in-out,
+                transform 0.1s ease-in-out;
 }
 .inactive {
-    display: none;
+    /* display: none; */
+    opacity: 0;  
+    visibility: hidden; 
+    transform: translate(-50%, -50%) scale(1.5);
 }
 .active {
-    display: block;
+    /* display: block; */
+    opacity: 1;
+    visibility: visible;
+    transform :translate(-50%, -50%) scale(1);
 }
 #addBook {
     position: absolute; 
@@ -53,6 +68,7 @@
     outline: none;
     border-radius: 5px;
     cursor: pointer;
+    background: #071d6760;
 }
 #closeBtn {
     position: absolute;
@@ -90,12 +106,33 @@ input[type="text"], input[type="number"] {
     font-size: 15px;
 }
 #shelf {
+    height: 100%;
+    background: rgb(152, 168, 183);
+    padding: 25px;
     overflow: auto;
     display: grid;
     gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) ;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+
 }
 .shelfCard {
-    background: rgb(191, 162, 162);
-    width: 200px;
+    background: rgba(239, 239, 239, 0.919);
+    width: 220px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.readBtn, .removeBtn {
+    width: 95%;
+    border: none;
+    border-radius: 8px;
+    height: 30px;
+}
+.removeBtn {
+    background-color: rgb(187, 187, 187);
 }
