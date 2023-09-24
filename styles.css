@@ -26,6 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.149);
+    z-index: 2;
 }
 #popUp {
     position: absolute; 
@@ -126,6 +128,7 @@ input[type="text"], input[type="number"] {
     border-radius: 10px;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.149);
 }
 .readBtn, .removeBtn {
     width: 95%;
@@ -135,4 +138,10 @@ input[type="text"], input[type="number"] {
 }
 .removeBtn {
     background-color: rgb(187, 187, 187);
+}
+.red {
+    background: rgba(192, 62, 62, 0.737);
+}
+.green {
+    background: rgba(91, 195, 91, 0.675);
 }

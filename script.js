@@ -54,8 +54,10 @@ function display() {
             readButton.classList.add('readBtn');
             if (book.read === 'on') {
                 readButton.textContent = 'Read';
+                readButton.classList.add('green')
             } else {
                 readButton.textContent = 'Not read'
+                readButton.classList.add('red')
             }
             bookCard.appendChild(readButton);
             readButtonsIndex.push(readButton);
@@ -98,8 +100,12 @@ function readStatus(){
             toggle = event.target;
             if (toggle.textContent === 'Read') {
                 toggle.textContent = 'Not read';
+                toggle.classList.add('red')
+                toggle.classList.remove('green')
             } else {
                 toggle.textContent = 'Read';
+                toggle.classList.add('green')
+                toggle.classList.remove('red')
             }
         })
     })
