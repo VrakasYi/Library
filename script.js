@@ -1,6 +1,6 @@
 //example books
-const book1 = new Book('To Kill A Mockingbird', 'Harper Lee', 488, 'on')
-const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 701, 'off')
+const book1 = new Book('To Kill A Mockingbird', 'Harper Lee', 488, true)
+const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 701, false)
 
 const shelf = document.getElementById('shelf')
 const btn = document.querySelector('#addBookBtn');
@@ -52,7 +52,7 @@ function display() {
             // .textContent = 'Read', readButton.classList.add('readBtn')
             let readButton = document.createElement('button');
             readButton.classList.add('readBtn');
-            if (book.read === 'on') {
+            if (book.read) {
                 readButton.textContent = 'Read';
                 readButton.classList.add('green')
             } else {
@@ -72,6 +72,7 @@ function display() {
 
             newBook.push(book);
             removeBooks();
+            readStatus();
             console.log(book);
         }
     })
@@ -94,18 +95,20 @@ function removeBooks() {
 }
 //Toggle read
 function readStatus(){
-    readButtonsIndex.forEach((readButton, index)=> {
+    readButtonsIndex.forEach((readButton)=> {
         readButton.addEventListener('click',(event)=> {
             console.log(event.target)
-            toggle = event.target;
+            let toggle = event.target;
             if (toggle.textContent === 'Read') {
                 toggle.textContent = 'Not read';
                 toggle.classList.add('red')
                 toggle.classList.remove('green')
+                //display();
             } else {
                 toggle.textContent = 'Read';
                 toggle.classList.add('green')
                 toggle.classList.remove('red')
+                //display();
             }
         })
     })
@@ -120,8 +123,11 @@ form.addEventListener('submit', function(event) {
     //console.log(title);
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
-    let read = document.getElementById('read').value;
+    let read = document.getElementById('read').checked;
+    console.log(read);
     myLibrary.push(new Book(title, author, pages, read));
     display();
     console.log(read);
+    document.querySelector('#popUp').classList.remove('active');
+    document.querySelector('#popUp').classList.add('inactive');
 })

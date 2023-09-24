@@ -79,9 +79,9 @@
     width: 15px;
     height: 15px;
     background: rgb(255, 162, 162);
-    border-radius:15px ;
+    border-radius:5px ;
     text-align: center;
-    line-height: 15px;
+    line-height: 17px;
     cursor: pointer;
 }
 #form h3 {
