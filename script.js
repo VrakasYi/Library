@@ -16,23 +16,12 @@ const closeBtn = document.querySelector("#closeBtn");
 const form = document.getElementById('form')
 
 let myLibrary = [book1, book2]; //the library array
-let newBook = []; //library to compare existing books
+let newBook = []; //library to compare existing books and use to display
 let removeButtonsIndex = []; //index of each new remove button created
 let readButtonsIndex = []; //index of each new read button created
 
-//book constructor
-// function Book(title, author, pages, read) {
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-// }
 
-// function addBookToLibrary(book) {
-//     myLibrary.push(book);
-// }
-
-//open/close the popup window used to submit new books                                                                                                                                                                                                                                                         
+//Show/hide the popup window
 btn.addEventListener("click", () => {
     document.querySelector('#popUp').classList.remove('inactive');
     document.querySelector('#popUp').classList.add('active');
@@ -58,9 +47,10 @@ function display() {
             //add a button with class and text in 1 line
             // bookCard.appendChild(readButton = document.createElement('button'))
             // .textContent = 'Read', readButton.classList.add('readBtn')
+
+            //create read/not read button
             let readButton = document.createElement('button');
             readButton.classList.add('readBtn');
-            //readButton.addEventListener()
             if (book.read) {
                 readButton.textContent = 'Read';
                 readButton.classList.add('green')
@@ -69,6 +59,23 @@ function display() {
                 readButton.classList.add('red')
             }
             bookCard.appendChild(readButton);
+
+            //Add functionality to switch between read/not read status
+            readButton.addEventListener('click',(event)=> {
+                console.log(event.target)
+                let toggle = event.target;
+                if (toggle.textContent === 'Read') {
+                    toggle.textContent = 'Not read';
+                    toggle.classList.add('red')
+                    toggle.classList.remove('green')
+                    //display();
+                } else {
+                    toggle.textContent = 'Read';
+                    toggle.classList.add('green')
+                    toggle.classList.remove('red')
+                    //display();
+                }
+            })
             readButtonsIndex.push(readButton);
             
             
@@ -81,7 +88,6 @@ function display() {
             
             newBook.push(book);
             removeBooks();
-            //readStatus();
             console.log(book);
         }
     })
@@ -102,28 +108,6 @@ function removeBooks() {
         })
     })
 }
-//Toggle read
-function readStatus(){
-    readButtonsIndex.forEach((readButton)=> {
-        readButton.addEventListener('click',(event)=> {
-            console.log(event.target)
-            let toggle = event.target;
-            if (toggle.textContent === 'Read') {
-                toggle.textContent = 'Not read';
-                toggle.classList.add('red')
-                toggle.classList.remove('green')
-                //display();
-            } else {
-                toggle.textContent = 'Read';
-                toggle.classList.add('green')
-                toggle.classList.remove('red')
-                //display();
-            }
-        })
-    })
-    
-}
-readStatus()
 
 //access the form inputs
 form.addEventListener('submit', function(event) {
