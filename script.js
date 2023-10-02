@@ -1,3 +1,11 @@
+class Book{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+};
 //example books
 const book1 = new Book('To Kill A Mockingbird', 'Harper Lee', 488, true)
 const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 701, false)
@@ -13,16 +21,16 @@ let removeButtonsIndex = []; //index of each new remove button created
 let readButtonsIndex = []; //index of each new read button created
 
 //book constructor
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-}
+// function addBookToLibrary(book) {
+//     myLibrary.push(book);
+// }
 
 //open/close the popup window used to submit new books                                                                                                                                                                                                                                                         
 btn.addEventListener("click", () => {
@@ -36,8 +44,8 @@ closeBtn.addEventListener('click', () => {
 
 //create divs with book info taken from the library array
 function display() {
-    myLibrary.forEach((book, index) => {
-        //console.log(book)
+    myLibrary.forEach((book) => {
+        console.log(book)
         if (!newBook.includes(book)) {
             let bookCard = document.createElement('div');
             bookCard.classList.add('shelfCard');
@@ -52,6 +60,7 @@ function display() {
             // .textContent = 'Read', readButton.classList.add('readBtn')
             let readButton = document.createElement('button');
             readButton.classList.add('readBtn');
+            //readButton.addEventListener()
             if (book.read) {
                 readButton.textContent = 'Read';
                 readButton.classList.add('green')
@@ -61,18 +70,18 @@ function display() {
             }
             bookCard.appendChild(readButton);
             readButtonsIndex.push(readButton);
-
-
+            
+            
             //same in 4 lines
             let removeBtn = document.createElement('button');
             removeBtn.classList.add('removeBtn');
             removeBtn.textContent = 'Remove'
             bookCard.appendChild(removeBtn);    
             removeButtonsIndex.push(removeBtn);// Store the button reference
-
+            
             newBook.push(book);
             removeBooks();
-            readStatus();
+            //readStatus();
             console.log(book);
         }
     })
