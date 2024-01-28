@@ -23,19 +23,23 @@
                     <h3>Add a book</h3>
                     <div class="form-elemnt">
                         <label for="title"></label>
-                        <input type="text" id="title" placeholder="Title">
+                        <input type="text" id="title" placeholder="Title" required>
+                        <span class="error" aria-live="polite"></span>
                     </div>
                     <div class="form-elemnt">
                         <label for="author"></label>
-                        <input type="text" id="author" placeholder="Author">
+                        <input type="text" id="author" placeholder="Author" required>
+                        <span class="error" aria-live="polite"></span>
                     </div>
                     <div class="form-elemnt">
                         <label for="pages"Pages></label>
-                        <input type="number" id="pages" placeholder="Pages">        
+                        <input type="number" id="pages" placeholder="Pages" required>
+                        <span class="error" aria-live="polite"></span>    
                     </div>
                     <div class="form-elemnt" id="checkbox">
                         <label for="read">But did you read it though?</label>
                         <input type="checkbox" id="read" value="checkboxValue">
+                        <span class="error" aria-live="polite"></span>
                     </div>
                     <button type="submit">Submit</button>
                 </form>

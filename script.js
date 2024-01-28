@@ -109,6 +109,7 @@ function removeBooks() {
     })
 }
 
+
 //access the form inputs
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -124,3 +125,41 @@ form.addEventListener('submit', function(event) {
     document.querySelector('#popUp').classList.remove('active');
     document.querySelector('#popUp').classList.add('inactive');
 })
+
+// const form = document.querySelector("form");
+
+form.addEventListener("input", (event) => {
+    // Each time the user types something, we check if the
+    // form fields are valid.
+
+    //Get the respective id
+    const inputId = event.target.id;
+
+    // Reset error messages
+    resetErrors();
+
+    if (!validateInput(inputId)) {
+        showError(inputId);
+    };
+});
+
+
+function resetErrors() {
+    const errorSpans = document.querySelectorAll('.error.active');
+    errorSpans.forEach((errorSpan) => {
+      errorSpan.textContent = '';
+      errorSpan.classList.remove('active');
+    });
+};
+
+
+function showError(message) {
+    const errorSpan = document.querySelector(`#${message} + .error`);
+    errorSpan.textContent = message;
+    errorSpan.classList.add('active');
+};
+
+function validateInput(inputId) {
+    const inputElement = document.getElementById(inputId);
+    return inputElement.checkValidity();
+};
