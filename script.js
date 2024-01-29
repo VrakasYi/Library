@@ -155,7 +155,7 @@ function resetErrors() {
 
 function showError(message) {
     const errorSpan = document.querySelector(`#${message} + .error`);
-    errorSpan.textContent = message;
+    errorSpan.textContent = `${message} is required`;
     errorSpan.classList.add('active');
 };
 

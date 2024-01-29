@@ -152,8 +152,12 @@ input[type="text"], input[type="number"] {
     font-size: 80%;
     color: white;
     background-color: #900;
-    border-radius: 0 0 5px 5px;
+    border-radius: 2px;
     box-sizing: border-box;
+    position: absolute;
+    top: 287px;
+    left: 140px;
+
 }
 
 .error.active {
